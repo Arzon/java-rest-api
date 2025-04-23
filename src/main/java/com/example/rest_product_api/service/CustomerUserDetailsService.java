@@ -1,5 +1,5 @@
 package com.example.rest_product_api.service;
-import com.example.rest_product_api.entity.User;
+import com.example.rest_product_api.entity.AppUser;
 import com.example.rest_product_api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.*;
@@ -15,7 +15,8 @@ public class CustomerUserDetailsService implements UserDetailsService  {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User userInfo = userRepository.findUserByUsername(username);
+        AppUser userInfo = userRepository.findByUsername(username);
+
 
         if(userInfo == null) {
             throw new UsernameNotFoundException("User not Found with username: " + username);
